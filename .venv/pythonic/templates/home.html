@@ -1,0 +1,207 @@
+{% extends "layout.html"%}
+{% block content%}
+<section class="bg-dark text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start ">
+    <div class="container rtl-direction">
+        <div class="d-sm-flex align-items-center justify-content-between ">
+            <div>
+                <h1 class="mb-10"> أهلا بك في  <span class="text-warning" id="home">زُلفى</span></h1>
+                <p class="lead my-4 font-famly-Tahoma">
+                    حَيْثُ تَتَلَأَّلَأُ أَنْوَارُ الْهُدَى وَتَتَفَتَّحُ أَبْوَابُ الْعِلْمِ
+
+                </p>
+                <a class="btn btn-secondary btn-lg border"
+                    href="{{ url_for('register') }}" target="_blank">
+                   سجِّل الآن 
+                </a>
+
+            </div >
+            <img class="img-fluid w-50 d-none d-sm-block mb-3 custom-img" src="{{url_for('static', filename='y.jpg')}}" alt="">
+           </div>
+    </div>
+</section>
+
+<section class="bg-ligh">
+    <div class="container p-5 mb-3">
+        <h3 class="text-center text-secondary animated fadeIn" id='learn'>الخدمات</h3>
+        <div class="row">
+            {% for course in courses %}
+            <div class="col-sm-12 col-md-6 col-lg-4 p-3 d-flex align-items-stretch">
+                <a href="#course_name" class="text-decoration-none">
+                    <div class="card bg-dark text-light">
+                        <div class="card-body text-center">
+                            <img src="{{url_for('static', filename=course.thumbnail)}}" class="card-img">
+                            <h4 class="card-title mb-4 mt-4">
+                                {{course.name}}
+                            </h4>
+                            <p class="card-text">{{course.description}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container mb-5 mt-4 p-5 card" style="background-color: #f8f9fa; box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); transform: scale(1);">
+        <div class="row mb-5">
+            <div class="col">
+                <h3 class="text-center text-secondary" id="about">من نحن</h3>
+            </div>
+        </div>
+        
+        <div class="row ">
+            {% for lesson in lessons %}
+            <div class="col-lg-6">
+                <div class=" mb-3">
+                    <img src="{{url_for('static', filename=lesson.icon)}}" alt="" class="card-img-top">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class=" mb-3">
+                    <div class="card-body lesson text-center">
+                        <h5 class="card-title">
+                            <a class="text-decoration-none text-dark" href="#">{{lesson.title}}</a>
+                        </h5>
+                        <p class="card-text mb-0 text-dark custom-paragraph">
+                            {{lesson.description}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<section class="bg-primary text-light p-5">
+  <div class="container ww">   
+    <h3 class="mb-3  ee text-center text-secondary" id="about">تواصل معنا</h3>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+          <div class="collapse navbar-collapse row" id="socialbtn">
+            <div class="col-lg-6">
+            <ul class="navbar-nav">
+              <li>
+                <a class="btn btn-dark ms-5 button_width" href="https://www.facebook.com/Pythonic88" target="_blank">
+                  <i class="bi bi-facebook "></i> Facebook
+                </a>
+              </li>
+              <li class="nav-item">
+                <a type="button" class="btn btn-dark ms-5 button_width" href="https://www.instagram.com/pythonic_88" target="_blank">
+                  <i class="bi bi-instagram"></i> Instagram
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="btn btn-dark ms-5 button_width" href="https://twitter.com/Pythonic88" target="_blank">
+                  <i class="bi bi-twitter"></i> Twitter
+                </a>
+              </li>
+            </ul>
+            </div>
+            <div class="col-lg-6">
+              <img src="{{ url_for('static', filename='uu.jpg') }}" class="img-fluid" alt="صورة">
+            </div>
+          </div>
+        </nav>
+   
+  </div>
+</section>
+
+<style>
+    .custom-paragraph {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+   
+    text-align: start;
+}
+.custom-img {
+    border-radius: 25px; 
+}
+@keyframes tada {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+  10%, 20% {
+    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+  }
+  30%, 50%, 70%, 90% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+  40%, 60%, 80% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+
+.text-center.text-secondary#learn:hover {
+  animation: tada 1s ease;
+  color: #d2ac3a !important;
+}
+.text-center.text-secondary#learn {
+  font-size: 40px;
+  color: #333 !important;
+  text-decoration: underline;
+}
+@keyframes tada {
+  0% {
+    transform: scale(1);
+  }
+  10%, 20% {
+    transform: scale(0.9) rotate(-3deg);
+  }
+  30%, 50%, 70%, 90% {
+    transform: scale(1.1) rotate(3deg);
+  }
+  40%, 60%, 80% {
+    transform: scale(1.1) rotate(-3deg);
+  }
+  100% {
+    transform: scale(1) rotate(0);
+  }
+}
+
+#about:hover {
+  animation: tada 1s;
+  color: #d2ac3a !important;
+}
+.text-secondary {
+  font-size: 40px;
+  color: #333 !important;
+  text-decoration:underline;
+
+
+}
+section{
+  direction: rtl;
+}
+.ee{
+  margin-bottom: 50px !important;
+  font-size: 30px;
+  color: #333 !important;
+
+ 
+}
+.ee:hover {
+      animation: animate__animated animate__tada;
+      animation: tada 1s;
+    }
+.bg-primary {
+    background-color: whitesmoke!important;
+}
+.navbar-nav .btn:hover {
+    background-color: #d2ac3a; 
+    color: #fff; 
+    border-color:#d2ac3a ;
+  }
+</style>
+
+
+
+
+
+
+{% endblock content%}

@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+    /* Your CSS styles remain unchanged */
+    .disabled {
+        opacity: 0.5; /* Reduce opacity to visually indicate that the card is disabled */
+        pointer-events: none; /* Disable pointer events on the card */
+    }
+</style>
+<div class="container mt-5 mb-5">
+    <h1 class="mb-5 text-center">مواعيد التسميع</h1>
+    <div class="row justify-content-center">
+        {% for appointment in appointments %}
+            <div class="col-lg-4">
+                <div class="card mb-3 tt {% if appointment.booked %}disabled{% endif %}">
+                    <img src="{{ url_for('static', filename='default.png') }}" class="card-img-top mx-auto d-block mt-2 custom-border" alt="صورة المستخدم" style="width: 100px; height: auto;">
+                    <div class="card-body mt-3 text-right d-flex flex-column justify-content-between">
+                        <div>
+                            <h6 class="card-subtitle mb-2 text-muted">التاريخ: {{ appointment.date }}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">الوقت: {{ appointment.time }}</h6>
+                            <p class="card-text">الملاحظات: {{ appointment.description }}</p>
+                        </div>
+                        <div class="text-center">
+                            {% if not appointment.booked %}
+                                <input type="radio" name="appointment" value="{{ appointment.id }}" data-appointment-id="{{ appointment.id }}" class="btn btn-primary mt-3">
+                            {% else %}
+                                <span class="text-muted">تم الحجز</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    // Get all radio buttons with the 'data-appointment-id' attribute
+    var radioButtons = document.querySelectorAll('[data-appointment-id]');
+
+    // Attach click event listener to each radio button
+    radioButtons.forEach(function(radio) {
+        radio.addEventListener('click', function() {
+            var card = this.closest('.card');
+            var appointmentId = this.getAttribute('data-appointment-id');
+            
+            // Disable all radio buttons and cards
+            radioButtons.forEach(function(rb) {
+                rb.disabled = true;
+            });
+            
+            // Enable only the clicked radio button and its card
+            this.disabled = false;
+            card.classList.add('disabled');
+            
+            // Send a request to your server to mark the appointment as booked and remove it from the database
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/appointment', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        console.log('Appointment removed successfully.');
+                    } else {
+                        console.error('Error removing appointment:', xhr.statusText);
+                    }
+                }
+            };
+            xhr.send(JSON.stringify({ appointmentId: appointmentId }));
+        });
+    });
+</script>
+
+
+{% endblock %}

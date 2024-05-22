@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container my-5">
+    <div class="card mx-auto" style="width: fit-content;">
+        <div class="card-body text-center">
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <p class="arabic-text" style="font-size: 18px; line-height: 1.6; text-align: right; margin-bottom: 20px;">
+                        شكرًا لك على هذه المبادرة الجميلة. نحن نقدر تفانيك ومساهمتك معنا.
+                    </p>
+                    <p class="arabic-text" style="font-size: 18px; line-height: 1.6; text-align: right; margin-bottom: 20px;">
+                        نشكرك على حسن نواياك وتفاعلك معنا، ولكن نعتقد أن قدراتك ليست كافية حاليًا لتحمل مسؤولية المشرفية.
+                    </p>
+                    <p class="arabic-text" style="font-size: 18px; line-height: 1.6; text-align: right;">
+                        نثمن لك حرصك واهتمامك بالمساهمة معنا، ولكن يبدو أن هناك بعض النواحي التي يمكنك تطويرها قبل التفكير في الانضمام كمشرف.
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <img src="{{url_for('static', filename='rr.jpg')}}" class="img-fluid" alt="صورة">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

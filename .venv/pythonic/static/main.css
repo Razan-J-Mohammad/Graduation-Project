@@ -1,0 +1,186 @@
+body::before {
+    display: block;
+    content: '';
+    height: 60px;
+
+}
+
+.card {
+    box-shadow: 0 5px 15px rgba(1 1 1/ 15);
+    border-radius: 5px;
+    margin: 5px;
+    direction: rtl;
+    transition: transform 0.5s ease;
+      
+
+}
+.form-control-lg {
+    height: calc(4em + 2rem + 2px) !important;
+    padding: .5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: .3rem;
+}
+.done {
+    background-color: #d4edda !important;
+}
+.card:hover {
+    transform: scale(1.1);
+  }
+
+
+.heading-animation:hover {
+    transform: scale(1.1);
+}
+.lesson {
+    box-shadow: 0 5px 15px rgba(200 200 200/ 15);
+    border-radius: 5px;
+    border: 1px solid #fff;
+
+}
+.heading-animation {
+   font-size: 25px;
+}
+
+.heading-animation:hover {
+    font-size: 30px; /* Adjust the font size as needed */
+}
+
+
+
+.button_width {
+    min-width: 120px;
+    max-width: 120px;
+}
+
+.article-img {
+    height: 65px;
+    width: 65px;
+    margin-right: 8px;
+}
+
+.user-img {
+    height: 150px;
+    width: 150px;
+    margin-right: 8px;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.nobull {
+    list-style-type: none;
+}
+
+.arabic-sc {
+    font-family: 'Rakkas', cursive;
+}
+
+.content-section {
+    background: #ffffff;
+    padding: 10px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+.form-check .form-check-input {
+    float: right;
+    margin-right: -1.5em;
+}
+.razan{
+    margin-right: 1.5em;
+}
+.card-body{
+    margin-right: 20px;
+    text-align: right;
+}
+h2{
+    text-align: center !important;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+.table{
+    direction: rtl;
+}
+.roo{
+    border: 3px solid #ccc; 
+    margin: 30px;
+   
+}
+.lesson {
+    box-shadow:none;
+    border-radius:none;
+    border:none;
+}
+.navbar-dark .navbar-brand {
+    color: #ffc107 !important;
+    font-weight: 800px;
+    border-radius: 10px;
+    border-bottom: 1px solid #ffc107;
+    font-size: 25px;
+} 
+.navbar-dark .navbar-nav .nav-link {
+    color: white !important;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+
+}
+.navbar-nav .nav-link:hover {
+    text-decoration: none; 
+    position: relative; 
+}
+
+.navbar-nav .nav-link:hover::after {
+    content: ""; 
+    position: absolute; 
+    left: 0; 
+    bottom: -3px; 
+    width: 100%; 
+    height: 2px; 
+    background-color: #d8b751; 
+}
+
+.btn-secondary:hover {
+    color: #fff;
+    background-color: #d8b751 !important;
+    border-color: #d8b751 !important;
+}
+.show>.btn-dark.dropdown-toggle {
+  
+    border-color:#343a40!important
+}
+.user-img {
+    height: 150px;
+    width: 150px;
+    
+
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: white !important;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+.appointment-img {
+    max-width: 100%;
+    height: auto;
+}
+.r {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -30px !important;
+    margin-top: -50px !important;
+    margin-left: -200px !important;
+    padding-left: -20px !important;
+}
+.n{
+    margin-right: -16px !important;
+    margin-top: -10px !important;
+   
+}
+.pp{
+    margin-top: 50px;
+}

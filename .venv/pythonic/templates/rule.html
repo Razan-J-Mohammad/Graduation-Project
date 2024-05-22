@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container my-5">
+    <!-- Rule Page -->
+    
+    <div class="card" style="background-color: white; box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); transform: scale(1);">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card-body">
+                    <h5 class="card-title text-center mt-5 mb-5">تعليمات سير التسميع والامتحانات</h5>
+                    <ul>
+                        <li>
+                            <div class="mb-3">
+                                <p>عند اختيار وقت التسميع، يجب الالتزام به لوجود طلاب آخرين في الانتظار.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="mb-3">
+                                <p>يجب الانتظار في قاعة الانتظار على Zoom حتى يتم قبولك لوجود 4 طلاب فقط في الساعة.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="mb-3">
+                                <p>يجب إكمال تسميع الجزء مع المشرف قبل أداء الامتحان.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="mb-3">
+                                <p>علامة النجاح للجزء هي 85/100، وللتسميع العادي هي 6/10.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="mb-3">
+                                <p>يجب أن تمتلك معرفة أساسية بقواعد التجويد، مثل مخارج الحروف، الادغام بغنه وبدون غنه، الاخفاء والاظهار وما إلى ذلك.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="mb-3">
+                                <p>اعلم أيضا ان التغيب عن التسيمع 4 مرات متواصله يأدي الا سحبك من حلقات التسميع</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+            <div class="col-lg-6 d-flex align-items-center">
+                <img src="{{ url_for('static', filename='rule.jpg') }}" class="img-fluid" alt="صورة">
+            </div>
+        </div>
+        <div class="mt-3 al  mb-5 mt-5" style="text-align: center;">
+            <a href="{{ url_for('profile_student') }}" class="btn btn-primary">العودة إلى الملف الشخصي</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

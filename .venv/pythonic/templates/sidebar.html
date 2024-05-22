@@ -1,0 +1,253 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container-fluid sidebar" style="direction: rtl;">
+<div class="row">
+        <div class="col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li class="nav-item">
+                        <a href="{{ url_for('home') }}" class="nav-link align-middle px-0">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">الصفحة الرئيسيه</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('DisplayAppointment') }}" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">المواعيد</span></a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('plan') }}" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-map"></i></i> <span class="ms-1 d-none d-sm-inline">خطة الحفظ</span></a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('rule') }}" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-pen"></i></i></i> <span class="ms-1 d-none d-sm-inline">تعليمات التسميع</span> </a>
+                    </li>
+                </ul>
+                <hr>
+
+            </div>
+        </div>
+
+    <div class="col-md-9 col-xl-10">
+            <div class="row">
+                <div class="col-md-6 py-3" >
+                    <div class="card dei"style="background-color: #f8f9fa; box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); transform: scale(1);">
+                        <div class="card-body">
+                            <div class="container">
+                                <h2>إنجازي</h2>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>اسم السورة</th>
+                                            <th>من ايه رقم</th>
+                                            <th>الى ايه رقم</th>
+                                            <th>رقم الجزء</th>
+                                            <th>علامة التسميع</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for entry in history %}
+                                            <tr>
+                                                <td>{{ entry.surah_name }}</td>
+                                                <td>{{ entry.start_verse }}</td>
+                                                <td>{{ entry.end_verse }}</td>
+                                                <td>{{ entry.part_number }}</td>
+                                                <td>{{ entry.recitation_mark }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="col-md-6 py-3">
+                    <div class="container">
+                        <div class="card dei" style="background-color: #f8f9fa; box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); transform: scale(1);">
+                            <div class="card-body">
+                                <div class="container">
+                                    <h2>امتحان الاجزاء</h2>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>رقم الجزء</th>
+                                                <th>عدد المواضع</th>
+                                                <th>علامة الامتحان</th>
+                                                <th>رقم المستوى</th>
+                                                <th>ناجح/راسب</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for entry in history_exam %}
+                                                <tr>
+                                                    <td>{{ entry.part_number }}</td>
+                                                    <td>{{ entry.number_of_topics }}</td>
+                                                    <td>{{ entry.exam_mark }}</td>
+                                                    <td>{{ entry.level_number }}</td>
+                                                    <td>{{ entry.pass_part }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                        
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            
+            </div>
+            <div class="row">
+                <div class="col-md-6 py-3">   
+                    <div class="card dei" style="background-color: #f8f9fa; box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); transform: scale(1);">
+                        <div class="card-body">
+                            <div id="chartData" 
+                                data-completed="{{ completed_parts_count }}" 
+                                data-not-completed="{{ not_completed_parts_count }}">
+                            </div>
+                            <canvas id="myChart" width="400" height="400"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 py-3">
+                    <div class="card dei" style="background-color: #f8f9fa; box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); transform: scale(1);">
+                        <div class="card-body" style="padding: 20px;">
+                            {% if years > 0 or months > 0 %}
+                            <h2 style="font-size: 24px; color: #333; text-align: center; margin-bottom: 20px; animation: fadeInUp 1s;">الوقت المقدر للحفظ</h2>
+                            <p style="font-size: 18px; color: #555; text-align: center; animation: fadeInUp 1s;">
+                                الوقت المقدر لإكمال الحفظ: {{ years }} سنة و {{ months }} أشهر
+                            </p>
+                            {% else %}
+                            <p style="font-size: 18px; color: #555; text-align: center; animation: fadeInUp 1s;">
+                                No estimate available.
+                            </p>
+                            {% endif %}   
+                        </div>
+                    </div>
+                    <div class="card mt-4" style="background-color: #f8f9fa; box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); transform: scale(1);">
+                        <div class="card-body">
+                            <h1 class="text-center">اكتب ملاحظات للمشرف</h1>
+                            <form action="{{ url_for('sidebar') }}" method="POST">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="supervisor_name" name="supervisor_name" placeholder="اسم المشرف">
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" id="feedback" name="feedback" rows="3" placeholder="ملاحظات"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">حفظ</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+            </div>
+                 
+    </div>
+</div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var completedPartsCount = parseInt(document.getElementById("chartData").getAttribute("data-completed"));
+    var notCompletedPartsCount = parseInt(document.getElementById("chartData").getAttribute("data-not-completed"));
+    console.log("Completed Parts Count:", completedPartsCount);
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['عدد الأجزاء المكتملة', 'عدد الأجزاء غير المكتملة'],
+            datasets: [{
+                data: [completedPartsCount, notCompletedPartsCount],
+                backgroundColor: [
+                    'rgb(75, 192, 192)',
+                    'rgb(255, 99, 132)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                position: 'top',
+                align: 'start'
+            },
+            animation: {
+                animateRotate: true,
+                animateScale: true
+            }
+        }
+    });
+</script>
+
+
+
+
+
+<style>
+.dei{
+ margin-top: 65px;
+}
+.imagee{
+    width: 400px;
+    height: 300px;
+}
+.roo{
+    text-align: center;
+    font-size: 30px;
+    border: 3px solid #ccc;
+    margin: 30px;
+    background-color: #ccc;
+}
+.center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       /* Adjust this value based on your needs */
+    }
+.nav-link {
+color:white !important;
+}
+.sidebar{
+        margin-top: 20px;
+}
+.chart-container {
+    padding: 15px;
+    width: 100%;
+    padding-top: 20px;
+    align-items: center; /* Set the width to 100% to make it responsive */
+}
+.card-title{
+    text-align: center;
+}
+#myChart {
+    width: 100%; /* Set the width to 100% to make it responsive */
+    height: 300px; /* Adjust the height as needed */
+}
+.direc{
+    align-items: center;
+}
+
+.chart-header h2 {
+    margin: 0;
+}
+
+
+.chart-body {
+    padding: 10px;
+    width: calc(100% - 10px); 
+}
+.form-group label {
+        direction: rtl !important;
+    }
+
+    </style>
+
+
+    
+    
+   
+    
+{% endblock %}

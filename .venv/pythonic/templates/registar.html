@@ -1,0 +1,129 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-auto align-items-center pt-5 text-end">
+    <div class="card appointment-card mb-4" style="background-color: #f8f9fa; box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); transform: scale(1);">
+        <div class="card-body p-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="{{ url_for('static', filename='e.jpg') }}" class="img-fluid" alt="صورة">
+                </div>
+                <div class="col-md-6">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {{ form.hidden_tag() }}
+                        <div class="mb-3 row">
+                            <div class="mb-3">
+                                <h2 >إنشاء حساب</h2>
+                            </div>
+                            <div class="col">
+                                {{ form.fname.label(class='form-label') }}
+                                {% if form.fname.errors %}
+                                {{ form.fname(class='form-control form-control-lg is-invalid') }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.fname.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.fname(class='form-control form-control-lg') }}
+                                {% endif %}
+                            </div>
+                            <div class="col">
+                                {{ form.lname.label(class='form-label') }}
+                                {% if form.lname.errors %}
+                                {{ form.lname(class='form-control form-control-lg is-invalid') }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.lname.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.lname(class='form-control form-control-lg') }}
+                                {% endif %}
+                            </div>
+                        
+                        </div>
+                        <div class="mb-3 row">
+                            <div class="col">
+                                {{ form.username.label(class='form-label') }}
+                                {% if form.username.errors %}
+                                {{ form.username(class='form-control form-control-lg is-invalid') }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.username.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.username(class='form-control form-control-lg') }}
+                                {% endif %}
+                            </div>
+                            <div class="col">
+                                {{ form.email.label(class='form-label') }}
+                                {% if form.email.errors %}
+                                {{ form.email(class='form-control form-control-lg is-invalid') }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.email(class='form-control form-control-lg') }}
+                                {% endif %}
+                            </div>
+                           
+                        </div>
+                        <div class="mb-3 row">
+                            <div class="col">
+                                {{ form.password.label(class='form-label') }}
+                                {% if form.password.errors %}
+                                {{ form.password(class='form-control form-control-lg is-invalid') }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.password.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.password(class='form-control form-control-lg') }}
+                                {% endif %}
+                            </div>
+                            <div class="col">
+                                {{ form.confirm_password.label(class='form-label') }}
+                                {% if form.confirm_password.errors %}
+                                {{ form.confirm_password(class='form-control form-control-lg is-invalid') }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.confirm_password.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.confirm_password(class='form-control form-control-lg') }}
+                                {% endif %}
+                            </div>
+                           
+                            
+                        </div>
+                        <div class="mb-3">
+                            <label for="image" class="form-label">صورة الملف الشخصي</label>
+                            <input type="file" id="image" name="image" class="form-control form-control-lg">
+                        </div>
+                        <div class="mb-3">
+                            {{ form.user_type.label(class='form-label') }}
+                            <div>
+                                {% for subfield in form.user_type %}
+                                <div class="form-check form-check-inline">
+                                    {{ subfield(class='form-check-input') }}
+                                    {{ subfield.label(class='form-check-label me-3') }}
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="form-group mt-4 d-flex justify-content-center">
+                            {{ form.submit(class='btn btn-outline-info me-2') }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

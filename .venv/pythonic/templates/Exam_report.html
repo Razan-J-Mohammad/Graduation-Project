@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <h2 class="pp">تقرير الامتحانات</h2>
+    <form id="examReportForm" action="{{ url_for('Exam_report') }}" method="post">
+        {{ form.csrf_token }}
+        <table id="examReportTable" class="table">
+            <thead>
+                <tr>
+                    <th>اسم المشرف</th>
+                    <th>اسم الطالب</th>
+                    <th>رقم الجزء</th>
+                    <th>عدد المواضع</th>
+                    <th>علامة الامتحان</th>
+                    <th>ناجح/راسب</th>
+                    <th>رقم المستوى</th>
+                </tr>
+            </thead>
+            <tbody id="examReportBody">
+                <tr>
+                    <td class="supervisor-cell">{{ user.fname }} {{ user.lname }}</td>
+                    <td><input type="text" class="form-control" name="student_name"></td>
+                    <td>
+                        <select class="form-control" name="part_number">
+                            {% for number in range(1, 31) %}
+                                <option value="{{ number }}">{{ number }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td><input type="text" class="form-control" name="number_of_topics"></td>
+                    <td><input type="text" class="form-control" name="exam_mark"></td>
+                    <td>
+                        <select class="form-control" name="pass_or_fail">
+                            <option value="pass">ناجح</option>
+                            <option value="fail">راسب</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control" name="level_number">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button id="addRowBtn" type="button" class="btn btn-primary">إضافة صف جديد</button>
+        <button type="submit" class="btn btn-primary">تقديم</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById("addRowBtn").addEventListener("click", function() {
+        var tableBody = document.getElementById("examReportBody");
+        var newRow = tableBody.insertRow(tableBody.rows.length);
+        
+        var supervisorCell = newRow.insertCell(0);
+        supervisorCell.className = "supervisor-cell";
+        
+        var studentNameCell = newRow.insertCell(1);
+        studentNameCell.innerHTML = '<input type="text" class="form-control" name="student_name">';
+        
+        var partNumberCell = newRow.insertCell(2);
+        partNumberCell.innerHTML = '<input type="text" class="form-control" name="part_number">';
+        
+        var numberOfTopicsCell = newRow.insertCell(3);
+        numberOfTopicsCell.innerHTML = '<input type="text" class="form-control" name="number_of_topics">';
+        
+        var examMarkCell = newRow.insertCell(4);
+        examMarkCell.innerHTML = '<input type="text" class="form-control" name="exam_mark">';
+        
+        var passOrFailCell = newRow.insertCell(5);
+        passOrFailCell.innerHTML = '<select class="form-control" name="pass_or_fail"><option value="pass">ناجح</option><option value="fail">راسب</option></select>';
+        
+        var levelNumberCell = newRow.insertCell(6);
+        levelNumberCell.innerHTML = '<select class="form-control" name="level_number"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select>';
+    });
+</script>
+
+{% endblock %}

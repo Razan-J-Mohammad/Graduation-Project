@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <h2 class="pp">تقرير التسميع</h2>
+    <form id="reportForm" action="{{ url_for('report') }}" method="post">
+        {{ form.csrf_token }}
+        <table id="reportTable" class="table">
+            <thead>
+                <tr>
+                    <th>اسم المشرف</th>
+                    <th>اسم الطالب</th>
+                    <th>اسم السورة</th>
+                    <th>من آية رقم</th>
+                    <th>إلى آية رقم</th>
+                    <th>رقم الجزء</th>
+                    <th>علامة التسميع</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="hidden" id="supervisorName" value="{{ user.fname }} {{ user.lname }}">{{ user.fname }} {{ user.lname }}</td>
+                    <td>
+                        <select class="form-control" name="student_name">
+                            {% for name in student_names %}
+                                <option value="{{ name }}">{{ name }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    
+                    
+                    <td><input type="text" class="form-control" name="surah_name"></td>
+                    <td><input type="text" class="form-control" name="start_verse"></td>
+                    <td><input type="text" class="form-control" name="end_verse"></td>
+                    <td><input type="text" class="form-control" name="part_number"></td>
+                    <td><input type="text" class="form-control" name="recitation_mark"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button id="addRowBtn" type="button" class="btn btn-primary">إضافة صف جديد</button>
+       <a href="{{ url_for('profile_super') }}"> <button type="submit" class="btn btn-primary">تقديم</button></a>
+    </form>
+</div>
+
+<script>
+    // Keep track of whether supervisor's name has been added
+    var supervisorAdded = false;
+
+    document.getElementById("addRowBtn").addEventListener("click", function() {
+        var table = document.getElementById("reportTable").getElementsByTagName("tbody")[0];
+        var newRow = table.insertRow(table.rows.length);
+        var supervisorCell = newRow.insertCell(0);
+        var studentCell = newRow.insertCell(1); 
+        var surahNameCell = newRow.insertCell(2);
+        var startVerseCell = newRow.insertCell(3);
+        var endVerseCell = newRow.insertCell(4);
+        var partNumberCell = newRow.insertCell(5);
+        var recitationMarkCell = newRow.insertCell(6);
+
+        // Add supervisor's name only if not already added
+        if (!supervisorAdded) {
+            supervisorCell.innerHTML = document.getElementById("supervisorName").value;
+            supervisorCell.innerHTML = '';
+        } 
+
+        studentCell.innerHTML = '<input type="text" class="form-control" name="student_name">'; 
+        surahNameCell.innerHTML = '<input type="text" class="form-control" name="surah_name">';
+        startVerseCell.innerHTML = '<input type="text" class="form-control" name="start_verse">';
+        endVerseCell.innerHTML = '<input type="text" class="form-control" name="end_verse">';
+        partNumberCell.innerHTML = '<input type="text" class="form-control" name="part_number">';
+        recitationMarkCell.innerHTML = '<input type="text" class="form-control" name="recitation_mark">';
+    });
+</script>
+
+{% endblock %}

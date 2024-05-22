@@ -1,0 +1,99 @@
+<!-- Azkar Al-Sabah Page -->
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container my-5 mt-5" style="text-align: right; ">
+    <div class="d-flex">
+        <div class="card w-50 mt-5 col-lg-6"style="text-align: right; background-color: white; box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); transform: scale(1);">
+            <div class="d-flex flex-lg-row flex-column-reverse">
+                <div class="col-lg-4 mt-5 n">
+                    <img src="{{ url_for('static', filename='ww.jpg') }}" class="img-fluid" alt="صورة">
+                </div>
+                <div class="col-lg-8 r mt-5">
+                    <div id="morning-remembrances" style="text-align: left;">
+                        <div class="card-body b" style="font-size: 16px; line-height: 1.6;">
+                            <ul style="padding-left: 20px; ">
+                                <li style="text-align: right;">الحمد لله الذي أحيانا بعدما أماتنا وإليه النشور</li>
+                                <li style="text-align: right;">الحمد لله الذي رزقنا بعد ما أفقدنا وفضل علينا وأفضل</li>
+                                <li style="text-align: right;">أصبحنا على فطرة الإسلام وعلى كلمة الإخلاص وعلى دين نبينا محمد صلى الله عليه وسلم وعلى ملة أبينا إبراهيم حنيفاً مسلماً وما كان من المشركين</li>
+                                <li style="text-align: right;">سبحان الله وبحمده عدد خلقه ورضا نفسه وزنة عرشه ومداد كلماته</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card w-50 mt-5 col-lg-6"style="text-align: right; background-color: white; box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); transform: scale(1);">
+            <div class="d-flex flex-lg-row flex-column-reverse">
+                <div class="col-lg-4 mt-5 n">
+                    <img src="{{ url_for('static', filename='ee.jpg') }}" class="img-fluid" alt="صورة">
+                </div>
+            <div class="col-lg-8 r mt-5"  id="evening-remembrances">
+                <div class="card-body">
+                    <ul>
+                        <li>بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم</li>
+                        <li>رضيت بالله رباً وبالإسلام ديناً وبمحمد صلى الله عليه وسلم نبياً ورسولاً</li>
+                        <li>اللهم عافني في بدني اللهم عافني في سمعي اللهم عافني في بصري</li>
+                        <li>سبحان الله وبحمده</li>
+                        <li>اللهم صلي على نبينا محمد</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+    <div class="d-flex">
+        <div class="card w-50 mt-5 col-lg-6"style="text-align: right; background-color: white; box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); transform: scale(1);">
+            <div class="d-flex flex-lg-row flex-column-reverse">
+                <div class="col-lg-4 mt-5 n">
+                    <img src="{{ url_for('static', filename='cc.jpg') }}" class="img-fluid" alt="صورة">
+                </div>
+                <div class="col-lg-8 r mt-5">
+                    <div id="morning-remembrances" style="text-align: left;">
+                        <div class="card-body b" style="font-size: 16px; line-height: 1.6;">
+                            <ul style="padding-left: 20px;">
+                                <li>سبحان الله</li>
+                                <li>الحمد لله</li>
+                                <li>الله أكبر</li>
+                                <li>سبحان الله وبحمده</li>
+                                <li>لا إله إلا الله</li>
+                                <li>الله أكبر، الله أكبر
+                                    أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ
+                                 </li>
+                                 <li>
+                                    أَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللَّهِ
+                                    حَيَّ عَلَى الصَّلَاةِ
+                                    حَيَّ عَلَى الْفَلَاحِ
+                                 </li>
+                                 <li>
+                                    اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ
+                                    لَا إِلَهَ إِلَّا اللَّهُ
+                                 </li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card w-50 mt-5 col-lg-6"style="text-align: right; background-color: white; box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); transform: scale(1);">
+            <div class="d-flex flex-lg-row flex-column-reverse">
+                <div class="col-lg-4 mt-5 n">
+                    <img src="{{ url_for('static', filename='xx.jpg') }}" class="img-fluid" alt="صورة">
+                </div>
+            <div class="col-lg-8 r mt-5"  id="evening-remembrances">
+                <div class="card-body">
+                    <ul style="padding-left: 20px;">
+                        <li>باسمك اللهم أموت وأحيا</li>
+                        <li>اللهم قني عذابك يوم تبعث عبادك</li>
+                        <li>اللهم إني أسلمت نفسي إليك وفوجئت وجهي إليك وفوجئت ظهري إليك وألجأت ظهري إليك رغبة ورهبة إليك لا ملجأ ولا منجى منك إلا إليك</li>
+                    </ul>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock %}

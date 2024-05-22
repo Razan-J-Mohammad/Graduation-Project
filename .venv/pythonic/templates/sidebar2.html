@@ -1,0 +1,248 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container-fluid sidebar" style="direction: rtl;">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li class="nav-item">
+                        <a href="{{ url_for('home') }}" class="nav-link align-middle px-0">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">الصفحة الرئيسيه</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('appointment') }}" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">المواعيد</span></a>
+                    </li>
+                    <li>
+                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">التقارير</span> </a>
+                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a href="{{ url_for('report') }}" class="nav-link px-0"> <span class="d-none d-sm-inline">تقرير التسميع</span> </a>
+                            </li>
+                            <li>
+                                <a href="{{ url_for('Exam_report') }}" class="nav-link px-0"> <span class="d-none d-sm-inline">تقرير الامتحانات</span> </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">ادارة الطلاب</span> </a>
+                    </li>
+                </ul>   
+            </div>
+        </div>
+
+
+        <div class="container">
+           
+            <h1 class="text-center animated-title mt-4" style="font-family: 'Arial', sans-serif; color: #336699; font-size: 36px; font-weight: bold;">ملاحظات الطلاب</h1>
+            <div class="row ">
+                {% for feedback, student, supervisor in feedback_data %}
+                <div class="col-lg-6 py-3">
+                    <div class="col">
+                    <div class="card dei">
+                        <div class="card-body text-center">
+                            <h3>اسم الطالب/ة: <span class="font-weight-bold">{{ student.username }}</span></h3>
+                            <p class="mt-3"><strong>الملاحظات:</strong> {{ feedback.feedback_text }}</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <div class="col-lg-6 py-3">
+                    <div class="container mt-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h2 class="font-weight-bold">الطالب/ة المتميز</h2>
+                                <img src="{{ url_for('static', filename='user_pics/' + distinguished_student_image_file) }}" alt="{{ distinguished_student.username }}" class="img-fluid rounded-circle mt-3" style="width: 150px; height: 150px;">
+                                <h3 class="mt-3">{{ distinguished_student.username }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 py-3">
+                <div class="container mt-4">
+                    <h1 class="text-center animated-title mt-4" style="font-family: 'Arial', sans-serif; color: #336699; font-size: 36px; font-weight: bold;"> طلابي</h1>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>اسم الطالب</th>
+                                <th>اخر جزء تم امتحانه</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for feedback, student, supervisor in feedback_data %}
+                            <tr>
+                                <td>{{ student.username }}</td>
+                                <td>{{ last_part_numbers[student.student_id] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            </div>
+     
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <style>
+    .nav-link {
+    color:white !important;
+    }
+    .sidebar{
+        margin-top: 20px;
+    }
+    .chart-container {
+    padding-top: 20px;
+    align-items: center;
+    margin-right: 155px;
+
+}
+.direc{
+    align-items: center;
+}
+.ttr{
+    margin-top: 20px;
+    margin-right: 20px;
+}
+.chart-content {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    height: 500px;
+    width: 700px;
+    margin-top: 60px;
+}
+.bordered-input {
+        border: 1px solid #000; /* Adjust the color and width of the border as needed */
+        padding: 5px; /* Optional: Add padding to give some space around the input */
+    }
+.chart-header {
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+}
+
+.chart-header h2 {
+    margin: 0;
+}
+
+.chart-body {
+    padding: 10px;
+    width: 600px;
+}
+.chart-container {
+    padding: 15px;
+}
+
+.chart-content {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    display: flex;
+}
+
+.chart-header {
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+}
+
+.chart-header h2 {
+    margin: 0;
+}
+
+.chart-body {
+    padding: 10px;
+    width: calc(100% - 20px); 
+}
+
+#myChart {
+    width: 100%; 
+    height: auto; 
+}
+.form-group label {
+        direction: rtl !important;
+    }
+    .card.dei {
+            background-color: #f8f9fa;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+            transform: scale(1);
+            border: none;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .card.dei .card-body {
+            padding: 20px;
+        }
+        .card.dei h3 {
+            color: #333;
+            font-size: 24px; /* Adjust font size as needed */
+            margin-bottom: 20px; /* Add margin to create space below the title */
+            animation: slide-in 0.5s ease-out;
+        }
+        .card.dei p {
+            color: #666;
+        }
+        .card.dei h6 {
+            color: #888;
+        }
+
+        @keyframes slide-in {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes slideIn {
+        from {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .animated-title {
+        animation: slideIn 1s ease-in-out;
+    }
+    .animated-title {
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .animated-title:hover {
+        transform: scale(1.1);
+    }
+    </style>
+
+
+
+    
+    
+    
+   
+    
+{% endblock %}

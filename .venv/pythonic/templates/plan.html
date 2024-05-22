@@ -1,0 +1,123 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container my-5">
+    <table class="table table-bordered text-center">
+        <thead class="thead-light">
+            <tr>
+                <th>تمام المراجعة</th>
+                <th>تمام الحفظ</th>
+                <th>المراجعة</th>
+                <th>الحفظ</th>
+                <th>سورة</th>
+                <th>التاريخ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" class="completion"></td>
+                <td><input type="checkbox" class="completion"></td>
+                <td>-</td>
+                <td>4-1</td>
+                <td>الفاتحة</td>
+                <td>السبت<br>10/07</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="completion"></td>
+                <td><input type="checkbox" class="completion"></td>
+                <td>4-1</td>
+                <td>6.5-5</td>
+                <td>البقرة</td>
+                <td>الأحد<br>10/08</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="completion"></td>
+                <td><input type="checkbox" class="completion"></td>
+                <td>6.5-5</td>
+                <td>9-6.5</td>
+                <td>البقرة</td>
+                <td>الإثنين<br>10/09</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="completion"></td>
+                <td><input type="checkbox" class="completion"></td>
+                <td>9-6.5</td>
+                <td>11.5-10</td>
+                <td>آل عمران</td>
+                <td>الثلاثاء<br>10/10</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="completion"></td>
+                <td><input type="checkbox" class="completion"></td>
+                <td>11.5-10</td>
+                <td>14-11.5</td>
+                <td>آل عمران</td>
+                <td>الأربعاء<br>10/11</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="completion"></td>
+                <td><input type="checkbox" class="completion"></td>
+                <td>14-11.5</td>
+                <td>16.5-15</td>
+                <td>النساء</td>
+                <td>الخميس<br>10/12</td>
+            </tr>
+            <tr>
+                <td colspan="4" class="font-weight-bold">تثبيت واستدراك</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="completion"></td>
+                <td><input type="checkbox" class="completion"></td>
+                <td>16.5-15</td>
+                <td>19-16.5</td>
+                <td>المائدة</td>
+                <td>الجمعة<br>10/13</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.completion').change(function() {
+            var row = $(this).closest('tr');
+            if ($(this).is(':checked')) {
+                row.addClass('disabled-row');
+            } else {
+                row.removeClass('disabled-row');
+            }
+        });
+    });
+</script>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+    }
+
+    thead th {
+        background-color: #f8f9fa;
+    }
+
+    tbody tr:nth-child(odd) {
+        background-color: #e9ecef;
+    }
+
+    .table th, .table td {
+        vertical-align: middle;
+    }
+
+    .font-weight-bold {
+        background-color: #d4b895;
+        font-size: 1.2em;
+    }
+
+    .disabled-row {
+        background-color: #d3d3d3 !important;
+        color: #a9a9a9;
+        pointer-events: none;
+    }
+</style>
+{% endblock content %}
